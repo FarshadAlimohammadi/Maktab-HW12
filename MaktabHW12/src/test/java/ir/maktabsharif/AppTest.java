@@ -33,5 +33,10 @@ public class AppTest {
         assertEquals(true,map.isEmpty());
     }
 
-
+    @Test
+    @DisplayName("null value as a key")
+    void testNullValueAsAKey(){
+        map.clear();
+        assertEquals(true,map.isEmpty());
+    }
 }
