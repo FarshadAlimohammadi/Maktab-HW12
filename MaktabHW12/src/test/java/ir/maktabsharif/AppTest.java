@@ -1,17 +1,24 @@
 package ir.maktabsharif;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppTest {
-    HashMapImple<Integer, String> map;
+    static HashMapImple<Integer, String> map;
+    static Number number;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
         map = new HashMapImple<>();
+        number = new Number();
     }
 
     @Test
@@ -37,5 +44,14 @@ public class AppTest {
     @DisplayName("null value as a key")
     void testNullValueAsAKey(){
         assertEquals(map.get(null), map.put(null, "reza"));
+    }
+
+    @Test
+    @DisplayName("Numbers of 3 digits or more")
+    void testNumberOfThreeDigitsOrMore(){
+        List<Integer> list = new ArrayList<>();
+        list.add(345);
+        list.add(678);
+        assertEquals(list,number.Computing("cdefg 345 12bbb33 678tt"));
     }
 }
