@@ -7,11 +7,11 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppTest {
-    HashMap<Integer, String> map;
+    HashMapImple<Integer, String> map;
 
     @BeforeEach
     void setUp() {
-        map = new HashMap<>();
+        map = new HashMapImple<>();
     }
 
     @Test
