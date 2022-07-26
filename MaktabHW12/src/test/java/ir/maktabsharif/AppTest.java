@@ -1,24 +1,46 @@
 package ir.maktabsharif;
 
+import ir.maktabsharif.domain.User;
+import ir.maktabsharif.repository.UserDAO;
+import ir.maktabsharif.service.SecurityService;
+import ir.maktabsharif.service.UserServiceImple;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class AppTest {
     static HashMapImple<Integer, String> map;
     static Number number;
 
+    static UserServiceImple userServiceImple;
+
+    static User user;
+
+    @Mock
+    SecurityService securityService;
+
+    @Mock
+    UserDAO userDAO;
+
     @BeforeAll
     static void setUp() {
         map = new HashMapImple<>();
         number = new Number();
+        user = new User();
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -53,5 +75,21 @@ public class AppTest {
         list.add(345);
         list.add(678);
         assertEquals(list,number.Computing("cdefg 345 12bbb33 678tt"));
+    }
+
+    @Test
+    @DisplayName("User Password")
+    void testSetUserPassword() throws Exception {
+        userServiceImple = new UserServiceImple(userDAO, securityService);
+
+        User user = new User("farshad", "alimohammadi", 22, "555");
+
+        String expected = "de3hj";
+
+        when(securityService.md5("12345")).thenReturn(expected);
+
+        String actual = "de3hj";
+
+        assertEquals(expected, actual);
     }
 }
