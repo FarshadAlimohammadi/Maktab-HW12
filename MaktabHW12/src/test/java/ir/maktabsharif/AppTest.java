@@ -23,7 +23,7 @@ public class AppTest {
     @Test
     @DisplayName("adding second object")
     void testAddingSecondObject(){
-        assertEquals(map.get(1), map.put(1, "Ali"));
+        assertEquals(map.get(1), map.put(1, "ali"));
     }
 
     @Test
@@ -36,7 +36,6 @@ public class AppTest {
     @Test
     @DisplayName("null value as a key")
     void testNullValueAsAKey(){
-        map.clear();
-        assertEquals(true,map.isEmpty());
+        assertEquals(map.get(null), map.put(null, "reza"));
     }
 }
