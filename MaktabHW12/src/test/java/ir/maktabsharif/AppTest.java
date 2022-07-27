@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class AppTest {
     static HashMapImple<Integer, String> map;
@@ -86,10 +86,12 @@ public class AppTest {
 
         String expected = "de3hj";
 
-        when(securityService.md5("12345")).thenReturn(expected);
+        when(securityService.md5("555")).thenReturn(expected);
 
-        String actual = "de3hj";
+        userServiceImple.assignPassword(user);
 
-        assertEquals(expected, actual);
+        assertEquals(expected, user.getPassword());
+
+        verify(securityService, times(1)).md5("555");
     }
 }

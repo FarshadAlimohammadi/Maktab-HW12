@@ -1,22 +1,17 @@
 package ir.maktabsharif;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Number {
     public List<Integer> Computing(String input) {
         List<Integer> list = new ArrayList<>();
 
-        String[] inputList = input.split("[\\sa-z]+");
+        String[] inputList = input.split("[\\sa-z]");
 
-        for (int i = 0; i < inputList.length; i++) {
-            if (!inputList[i].equals("")) {
-                int number = Integer.parseInt(inputList[i]);
-
-                if (number >= 100)
-                    list.add(number);
-            }
-        }
+        list = Arrays.stream(inputList).filter(e -> e.length() > 2).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
 
         return list;
     }
